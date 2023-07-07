@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="33dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp">
+
+        <TextView
+            android:id="@+id/home_top_bar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vouchers &amp; Cash"
+            android:textColor="#131314"
+            android:fontFamily="@font/basier_circle_bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/help"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

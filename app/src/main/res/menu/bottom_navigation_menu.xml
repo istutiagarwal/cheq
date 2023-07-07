@@ -10,14 +10,14 @@
         app:showAsAction="always"/>
 
     <item android:title="@string/pay"
-        android:id="@+id/rewardFragment"
+        android:id="@+id/payFragment"
         android:icon="@drawable/card_grey"
         android:orderInCategory="100"
         app:labelVisibilityMode="labeled"
         app:showAsAction="always"/>
 
     <item android:title="@string/rewards"
-        android:id="@+id/payFragment"
+        android:id="@+id/rewardFragment"
         android:icon="@drawable/rewards_selector"
         app:labelVisibilityMode="labeled"
         android:orderInCategory="100"
