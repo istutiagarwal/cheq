@@ -4,8 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cheqq.R
+import com.example.cheqq.databinding.FragmentHomeBinding
+import com.example.cheqq.ui.adapter.BaseAdapter
+import com.example.cheqq.ui.adapter.GenericSimpleRecyclerBindingInterface
 
 /**
  * A simple [Fragment] subclass.
@@ -16,6 +21,7 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private lateinit var binding : FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +35,23 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        initRecyclerView()
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return binding.root
+    }
+
+    private fun initRecyclerView() {
+        val stringArray = arrayListOf<String>("a","b","c","d")
+        val adapter =  BaseAdapter<String>(stringArray, R.layout.total_due_recycler_view_item, bindingInterface)
+        binding.featuredDetailsRv.adapter = adapter
+    }
+
+    val bindingInterface = object: GenericSimpleRecyclerBindingInterface<String> {
+        override fun bindData(item:String, view:View){
+            val textView: TextView = view.findViewById(R.id.recycler_view_text)
+            textView.text = item
+        }
     }
 
     companion object {
