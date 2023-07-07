@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.cheqq.R
+import com.example.cheqq.data.BankData
 import com.example.cheqq.databinding.FragmentHomeBinding
 import com.example.cheqq.ui.adapter.BaseAdapter
 import com.example.cheqq.ui.adapter.GenericSimpleRecyclerBindingInterface
@@ -42,15 +43,41 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        val stringArray = arrayListOf<String>("a","b","c","d")
-        val adapter =  BaseAdapter<String>(stringArray, R.layout.total_due_recycler_view_item, bindingInterface)
+         val stringArray = arrayListOf(
+            BankData(
+                bankAmountPayable = "₹60000",
+                bankCardType = "Credit Card",
+                bankDueDays = "Overdue by 1 day",
+                bankName = "Axis Platinum"
+            ),
+            BankData(
+                bankAmountPayable = "₹60000",
+                bankCardType = "Credit Card",
+                bankDueDays = "Due in 3 days",
+                bankName = "SBI Simply Click"
+            ),
+            BankData(
+                bankAmountPayable = "₹60000",
+                bankCardType = "Credit Card",
+                bankDueDays = "Due in 3 days",
+                bankName = " BOB Credit Platinum"
+            ),
+        )
+        val adapter =  BaseAdapter<BankData>(stringArray, R.layout.total_due_recycler_view_item, bindingInterface)
         binding.featuredDetailsRv.adapter = adapter
     }
 
-    val bindingInterface = object: GenericSimpleRecyclerBindingInterface<String> {
-        override fun bindData(item:String, view:View){
-            val textView: TextView = view.findViewById(R.id.recycler_view_text)
-            textView.text = item
+    val bindingInterface = object: GenericSimpleRecyclerBindingInterface<BankData> {
+
+        override fun bindData(data: BankData, itemView: View) {
+            val bankName : TextView = itemView.findViewById(R.id.bank_name)
+            val bankCardType : TextView = itemView.findViewById(R.id.bank_card_type)
+            val  bankAmountPayable : TextView = itemView.findViewById(R.id.bank_amount_payable)
+            val  bankDueDays : TextView = itemView.findViewById(R.id.bank_due_days)
+            bankName.text = data.bankName
+            bankCardType.text = data.bankCardType
+            bankAmountPayable.text = data.bankAmountPayable
+            bankDueDays.text = data.bankDueDays
         }
     }
 

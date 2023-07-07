@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -8,14 +9,49 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/recycler_view_text"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bank_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/bob"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:src="@drawable/bob" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bank_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/bank_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Axis Platinum" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bank_card_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/bank_name"
+            app:layout_constraintLeft_toRightOf="@id/bank_image"
+            tools:text="credit" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bank_amount_payable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="₹60000" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/bank_due_days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/bank_amount_payable"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="due in 2 days" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
