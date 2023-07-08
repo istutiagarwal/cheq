@@ -1,5 +1,6 @@
 package com.example.cheqq.ui
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -37,11 +39,18 @@ class HomeFragment : Fragment() {
     private fun observeTotalDueLiveData() {
         homeFragmentViewModel.totalDueCardData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
+                binding.totalDueConsLayout.background = isAmountOverDue(data)
                 initRecyclerView(data)
             } else {
                 Log.d("Cheq", "data is null")
             }
         }
+    }
+
+    private fun isAmountOverDue(data : ArrayList<BankData>): Drawable? {
+        data.forEach{
+            if(it.isOverDue) return ContextCompat.getDrawable(requireContext(), R.drawable.green_radient_background!!)}
+        return null
     }
 
     private fun initRecyclerView(data: ArrayList<BankData>) {

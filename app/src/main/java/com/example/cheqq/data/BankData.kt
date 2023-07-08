@@ -5,5 +5,6 @@ data class BankData(
     val bankName : String ,
     val bankCardType : String,
     val  bankAmountPayable : String,
-    val  bankDueDays : String
+    val  bankDueDays : String,
+    val isOverDue : Boolean
 )

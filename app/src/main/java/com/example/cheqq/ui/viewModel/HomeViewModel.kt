@@ -28,19 +28,22 @@ class HomeViewModel : ViewModel() {
            bankAmountPayable = "₹60000",
            bankCardType = "Credit Card",
            bankDueDays = "Overdue by 1 day",
-           bankName = "Axis Platinum"
+           bankName = "Axis Platinum",
+           isOverDue = true
        ),
        BankData(
            bankAmountPayable = "₹60000",
            bankCardType = "Credit Card",
            bankDueDays = "Due in 3 days",
-           bankName = "SBI Simply Click"
+           bankName = "SBI Simply Click",
+           isOverDue = false
        ),
        BankData(
            bankAmountPayable = "₹60000",
            bankCardType = "Credit Card",
            bankDueDays = "Due in 3 days",
-           bankName = " BOB Credit Platinum"
+           bankName = " BOB Credit Platinum",
+           isOverDue = false
        ),
    )
 }
