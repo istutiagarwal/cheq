@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/chips_balance"
+            android:layout_width="171dp"
+            android:layout_height="75dp"
+            android:background="@drawable/grey_rounded_corner"
+            android:paddingTop="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="16dp"
+            android:paddingEnd="23dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chips_balance_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#858989"
+                android:fontFamily="@font/basier_circle_semi_bold"
+                android:textSize="10sp"
+                android:text="@string/chips_balance"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:textAllCaps="true"
+                tools:text="@string/chips_balance" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/chips_balance_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/double_chips_icon"
+                android:layout_marginTop="9dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chips_balance_text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chips_balance_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="4dp"
+                android:text="2344"
+                android:textColor="#202948"
+                android:paddingRight="5dp"
+                android:fontFamily="@font/basier_circle_semi_bold"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/chips_balance_image"
+                app:layout_constraintTop_toBottomOf="@id/chips_balance_text" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/chips_expire_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingTop="8dp"
+                android:src="@drawable/waiting"
+                app:layout_constraintStart_toEndOf="@id/chips_balance_amount"
+                app:layout_constraintTop_toBottomOf="@id/chips_balance_text" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/chips_expire_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="800"
+                android:textColor="#ADB2B2"
+                android:paddingTop="7dp"
+                android:fontFamily="@font/basier_circle_medium"
+                android:textSize="12sp"
+                android:layout_marginTop="6dp"
+                app:layout_constraintStart_toEndOf="@id/chips_expire_icon"
+                app:layout_constraintTop_toBottomOf="@id/chips_balance_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
