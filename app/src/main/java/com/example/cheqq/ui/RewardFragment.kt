@@ -1,12 +1,14 @@
 package com.example.cheqq.ui
 
 import android.os.Bundle
+import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,6 +19,7 @@ import com.example.cheqq.R
 import com.example.cheqq.data.BankData
 import com.example.cheqq.data.ExploreVouchersData
 import com.example.cheqq.data.FeaturedDetailsData
+import com.example.cheqq.data.FeaturedDetailsItem
 import com.example.cheqq.databinding.FragmentHomeBinding
 import com.example.cheqq.databinding.FragmentRewardBinding
 import com.example.cheqq.ui.adapter.BaseAdapter
@@ -54,7 +57,24 @@ class RewardFragment : Fragment() {
     }
 
     val stringArray = arrayListOf(
-        R.drawable.subway, R.drawable.subway, R.drawable.subway, R.drawable.subway
+        FeaturedDetailsItem(
+            detailsAmount = "₹6000",
+            detailsCompanyLogo = R.drawable.merch_logo_swiggy,
+            detailsLogo = R.drawable.merch_illustration_subway,
+            chipsPrice = "₹1"
+        ),
+        FeaturedDetailsItem(
+            detailsAmount = "₹6000",
+            detailsCompanyLogo = R.drawable.merch_logo_swiggy,
+            detailsLogo = R.drawable.merch_illustration_subway,
+            chipsPrice = "₹1"
+        ),
+        FeaturedDetailsItem(
+            detailsAmount = "₹6000",
+            detailsCompanyLogo = R.drawable.merch_logo_swiggy,
+            detailsLogo = R.drawable.merch_illustration_subway,
+            chipsPrice = "₹1"
+        )
     )
 
     private fun initExploreVouchersRecyclerView() {
@@ -106,16 +126,20 @@ class RewardFragment : Fragment() {
             FeaturedDetailsData(
                 featuredDetailsTitle = "Featured Details",
                 innerRecyclerView = stringArray,
-                backgroundImage = ContextCompat.getDrawable(requireContext(),
+                backgroundImage = ContextCompat.getDrawable(
+                    requireContext(),
                     R.drawable.featured_categories_background
-                )!!
+                )!!,
+                isChipPriceVisible = true
             ),
             FeaturedDetailsData(
                 featuredDetailsTitle = "Other Featured Details",
                 innerRecyclerView = stringArray,
-                backgroundImage = ContextCompat.getDrawable(requireContext(),
+                backgroundImage = ContextCompat.getDrawable(
+                    requireContext(),
                     R.drawable.other_featured_details_background
-                )!!
+                )!!,
+                isChipPriceVisible = false
             )
         )
 
@@ -125,24 +149,27 @@ class RewardFragment : Fragment() {
             parentBindingInterface
         )
         binding.fdRv.adapter = adapter
-        val divider = DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
+        val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         context?.let {
-            ContextCompat.getDrawable(it,R.drawable.item_divider)
+            ContextCompat.getDrawable(it, R.drawable.item_divider)
                 ?.let { divider.setDrawable(it) }
         }
 
         binding.fdRv.addItemDecoration(divider)
     }
 
-    val parentBindingInterface =
+    private val parentBindingInterface =
         object : GenericSimpleRecyclerBindingInterface<FeaturedDetailsData> {
 
             override fun bindData(parentData: FeaturedDetailsData, itemView: View) {
                 val featuredDealsType: TextView = itemView.findViewById(R.id.featured_details_title)
                 val recyclerView: RecyclerView = itemView.findViewById(R.id.featured_details_rv_box)
+                val layout =
+                    itemView.findViewById<CardView>(R.id.featured_details_price_per_coin_include)
+                layout.visibility = if (parentData.isChipPriceVisible) View.VISIBLE else View.GONE
                 itemView.background = (parentData.backgroundImage)
                 featuredDealsType.text = parentData.featuredDetailsTitle
-                val childAdapter = BaseAdapter<Int>(
+                val childAdapter = BaseAdapter<FeaturedDetailsItem>(
                     parentData.innerRecyclerView,
                     R.layout.featured_details_item,
                     bindingInterface
@@ -150,16 +177,22 @@ class RewardFragment : Fragment() {
                 recyclerView.adapter = childAdapter
             }
 
-            val bindingInterface = object : GenericSimpleRecyclerBindingInterface<Int> {
+            val bindingInterface =
+                object : GenericSimpleRecyclerBindingInterface<FeaturedDetailsItem> {
 
-                override fun bindData(data: Int, itemView: View) {
-                    val featuredDeals: ImageView =
-                        itemView.findViewById(R.id.featured_details_item_image)
-                    featuredDeals.setImageResource(data)
+                    override fun bindData(item: FeaturedDetailsItem, view: View) {
+                        val detailsAmount: TextView = view.findViewById(R.id.featured_details_price)
+                        val detailsCompanyLogo: ImageView = view.findViewById(R.id.swiggy_image)
+                        val detailsLogo: ImageView = view.findViewById(R.id.food_image)
+                        val chipsPrice: TextView = view.findViewById(R.id.chip_price)
+
+                        detailsAmount.text = item.detailsAmount
+                        detailsCompanyLogo.setImageResource(item.detailsCompanyLogo)
+                        detailsLogo.setImageResource(item.detailsLogo)
+                        chipsPrice.text = item.chipsPrice
+                    }
 
                 }
-
-            }
         }
 
     companion object {

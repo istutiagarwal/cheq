@@ -28,7 +28,7 @@
 
             <include
                 layout="@layout/per_coin_rate"
-                android:id="@+id/featured_details_price_per_coin"
+                android:id="@+id/featured_details_price_per_coin_include"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="11dp"
                 android:layout_marginRight="13dp"

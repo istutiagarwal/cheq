@@ -7,29 +7,87 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="33dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        tools:context=".ui.HomeFragment">
-
-        <!-- TODO: Update blank fragment layout -->
-
-        <include
-            layout="@layout/home_top_bar"
-            android:id="@+id/home_top_bar" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/featured_details_rv"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="139dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/home_top_bar"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                android:layout_marginTop="33dp"
+                tools:context=".ui.HomeFragment">
+
+                <include
+                    layout="@layout/home_top_bar"
+                    android:id="@+id/home_top_bar" />
+
+                <include layout="@layout/total_due_layout"
+                    android:id="@+id/total_due_layout"
+                    app:layout_constraintTop_toBottomOf="@id/home_top_bar"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/your_credit_score_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Credit Score"
+                    android:textColor="#6E7170"
+                    android:fontFamily="@font/basier_circle_semi_bold"
+                    android:textSize="10sp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:textAllCaps="true"
+                    android:layout_marginTop="33dp"
+                    app:layout_constraintTop_toBottomOf="@id/total_due_layout"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <include layout="@layout/your_credit_score"
+                    android:id="@+id/your_credit_score"
+                    app:layout_constraintTop_toBottomOf="@id/your_credit_score_text"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="91dp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/action_recommended_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Action Recommended"
+                    android:textColor="#6E7170"
+                    android:fontFamily="@font/basier_circle_semi_bold"
+                    android:textSize="10sp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    app:textAllCaps="true"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintTop_toBottomOf="@id/your_credit_score"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/action_recommended_image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:src="@drawable/action_recommended_icon"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/action_recommended_text"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 </layout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/credit_score_one"
+        android:layout_width="match_parent"
+        android:layout_height="68dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/credit_score_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="14dp"
+            android:src="@drawable/ticker"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ticker" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/credit_score_powered_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/basier_circle_semi_bold"
+            android:text="@string/powered_by"
+            android:textColor="#CACFCF"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/credit_score_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true"
+            tools:text="@string/powered_by" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/credit_score_experian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:src="@drawable/experian"
+            app:layout_constraintLeft_toRightOf="@id/credit_score_image"
+            app:layout_constraintTop_toBottomOf="@id/credit_score_powered_by"
+            tools:src="@drawable/experian" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/credit_score_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/basier_circle_bold"
+            android:text="799"
+            android:textColor="#131414"
+            android:textSize="24sp"
+            app:layout_constraintRight_toLeftOf="@id/total_credit_amount"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true"
+            tools:text="799" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/total_credit_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/basier_circle_semi_bold"
+            android:text="@string/total_credit_amount"
+            android:textColor="#CACFCF"
+            android:textSize="24sp"
+            app:layout_constraintRight_toLeftOf="@id/forward_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textAllCaps="true"
+            tools:text="@string/total_credit_amount" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/credit_score_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/basier_circle_semi_bold"
+            android:text="@string/credit_score_rating"
+            android:textColor="#00C197"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@id/forward_image"
+            app:layout_constraintTop_toBottomOf="@id/total_credit_amount"
+            app:textAllCaps="true"
+            tools:text="@string/credit_score_rating" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/forward_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/right_chevron_small_grey"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/right_chevron_small_grey" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

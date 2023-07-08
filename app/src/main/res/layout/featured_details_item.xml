@@ -1,13 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/featured_details_item_image"
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp">
 
-</FrameLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="142dp"
+            android:layout_height="260dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="2dp"
+            android:elevation="0dp"
+            app:cardBackgroundColor="#ABF1E9"
+            app:strokeColor="#54B9AE"
+            app:strokeWidth="0.5dp"
+            app:cardCornerRadius="12dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:strokeColor="#54B9AE"
+            app:strokeWidth="0.5dp">
+
+            <LinearLayout
+                android:layout_width="142dp"
+                android:layout_height="wrap_content"
+                android:background="#FF8803"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/featured_details_icon_background"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/swiggy_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginVertical="12dp"
+                        android:src="@drawable/merch_logo_swiggy" />
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/featured_details_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/basier_circle_regular"
+                    android:text="₹1000"
+                    android:textColor="#FFFFFF"
+                    android:textSize="28sp" />
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/per_coin_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="22dp"
+                    android:background="#FF8803"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/chip_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/basier_circle_regular"
+                        android:text="₹587"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/chip_price_equals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:fontFamily="@font/basier_circle_regular"
+                        android:text="="
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@id/chip_price"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/chip_quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="4dp"
+                        android:fontFamily="@font/basier_circle_regular"
+                        android:text="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toStartOf="@id/chip_price_equals"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/chip_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginRight="4dp"
+                        android:src="@drawable/single_chips"
+                        app:layout_constraintEnd_toStartOf="@id/chip_quantity"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/basier_circle_regular"
+                    android:text="Claim Now >"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/food_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/merch_illustration_subway" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
