@@ -19,7 +19,12 @@
 
                 <include
                     layout="@layout/home_top_bar"
-                    android:id="@+id/home_top_bar" />
+                    android:id="@+id/home_top_bar"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
                 <include layout="@layout/total_due_layout"
                     android:id="@+id/total_due_layout"
@@ -57,7 +62,7 @@
                     android:layout_marginEnd="24dp"
                     app:layout_constraintRight_toRightOf="parent"
                     android:layout_width="match_parent"
-                    android:layout_height="91dp" />
+                    android:layout_height="wrap_content" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/action_recommended_text"
