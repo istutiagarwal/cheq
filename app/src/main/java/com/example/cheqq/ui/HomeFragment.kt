@@ -6,8 +6,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -31,7 +31,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         observeTotalDueLiveData()
         return binding.root
     }
@@ -39,7 +39,13 @@ class HomeFragment : Fragment() {
     private fun observeTotalDueLiveData() {
         homeFragmentViewModel.totalDueCardData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
-                binding.totalDueConsLayout.background = isAmountOverDue(data)
+                val slider = AnimationUtils.loadAnimation(requireActivity(),R.anim.anim_drop_down)
+                binding.totalDueLayout.totalDueRv.startAnimation(slider)
+
+
+                val blink = AnimationUtils.loadAnimation(requireActivity(),R.anim.blink_anim)
+                binding.totalDueConsLayout.startAnimation(blink)
+               // binding.totalDueConsLayout.background = isAmountOverDue(data)
                 initRecyclerView(data)
             } else {
                 Log.d("Cheq", "data is null")

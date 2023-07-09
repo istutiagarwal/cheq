@@ -17,4 +17,6 @@
     <string name="action_recommended_title">Never miss a due date with cheq safe</string>
     <string name="action_recommended_desc"><![CDATA[Link your email & get bills]]></string>
     <string name="link_now">Link Now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
