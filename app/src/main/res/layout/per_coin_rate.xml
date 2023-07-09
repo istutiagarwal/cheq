@@ -11,7 +11,8 @@
         android:id="@+id/per_coin_rate_card_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="13dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/per_coin_rate"
@@ -23,6 +24,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="₹587"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,6 +36,7 @@
             android:layout_height="wrap_content"
             android:text="="
             android:layout_marginRight="4dp"
+            android:paddingTop="4dp"
             app:layout_constraintEnd_toStartOf="@id/chip_price"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +46,7 @@
             android:layout_height="wrap_content"
             android:text="1"
             android:layout_marginRight="4dp"
+            android:paddingTop="4dp"
             app:layout_constraintEnd_toStartOf="@id/chip_price_equals"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,6 +57,8 @@
             android:src="@drawable/single_chips"
             android:layout_marginTop="4dp"
             android:layout_marginRight="4dp"
+           android:paddingLeft="10dp"
+            android:paddingTop="4dp"
             app:layout_constraintEnd_toStartOf="@id/chip_quantity"
             app:layout_constraintTop_toTopOf="parent" />
 
