@@ -203,12 +203,6 @@ class RewardFragment : Fragment() {
                     v.performClick()
                     binding.getCashInstantly.getCashInstantlyCard.setOnClickListener {
                         startActivity(Intent(requireActivity(), ErrorActivity::class.java))
-//                        activity?.supportFragmentManager?.beginTransaction()
-//                           // ?.setCustomAnimations(R.anim.anim_drop_down, R.anim.left_to_right_animation, R.anim.anim_drop_down, R.anim.left_to_right_animation)
-//                            ?.replace(R.id.flFragment , BlankFragment.newInstance())
-//                            ?.addToBackStack(null)
-//                            ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                            ?.commit()
                         activity?.overridePendingTransition(R.anim.left_to_right_animation, R.anim.left_to_right_animation);
                     }
                 }
