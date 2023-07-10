@@ -203,9 +203,9 @@ class RewardFragment : Fragment() {
                     v.performClick()
                     binding.getCashInstantly.getCashInstantlyCard.setOnClickListener {
                         startActivity(Intent(requireActivity(), ErrorActivity::class.java))
+                        activity?.overridePendingTransition(R.anim.left_to_right_animation, R.anim.left_to_right_animation);
                     }
                 }
-
                 MotionEvent.ACTION_DOWN -> {
                     v.startAnimation(anim1)
                 }

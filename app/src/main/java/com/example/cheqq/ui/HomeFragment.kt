@@ -1,13 +1,21 @@
 package com.example.cheqq.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
+import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.RelativeSizeSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -59,6 +67,7 @@ class HomeFragment : Fragment() {
         binding.totalDueLayout.payNowCardLayout.startAnimation(alpha)
         binding.totalDueLayout.textTotalDue.visibility = View.VISIBLE
         binding.totalDueLayout.totalDueAmount.visibility = View.VISIBLE
+        move(binding.totalDueLayout.totalDueAmount)
     }
 
     private fun observeTotalDueLiveData() {
@@ -95,5 +104,28 @@ class HomeFragment : Fragment() {
         bankCardType.text = item.bankCardType
         bankAmountPayable.text = item.bankAmountPayable
         bankDueDays.text = item.bankDueDays
+    }
+
+
+    private fun move(view: TextView) {
+        val valueAnimator = ValueAnimator.ofInt(1000, 6000)
+        valueAnimator.duration = 1000
+//        va.addUpdateListener { animation -> view.translationX = animation.animatedValue as Float }
+//        va.repeatCount = 5
+
+        valueAnimator.addListener(object : AnimatorListenerAdapter() {
+            override fun onAnimationEnd(animation: Animator) {
+                super.onAnimationEnd(animation)
+                view.post {
+                    view.text = view.text.toString()
+                }
+            }
+        })
+        valueAnimator.addUpdateListener {
+            view.post {
+                view.text =valueAnimator.animatedValue.toString()
+            }
+        }
+        valueAnimator.start()
     }
 }
