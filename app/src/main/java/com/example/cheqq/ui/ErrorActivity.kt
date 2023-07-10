@@ -13,6 +13,7 @@ class ErrorActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_error)
         binding.errorStateImage.setOnClickListener {
             finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_in_left);
         }
     }
 }

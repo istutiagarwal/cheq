@@ -24,4 +24,8 @@
         android:id="@+id/mainActivity"
         android:name="com.example.cheqq.ui.MainActivity"
         android:label="MainActivity" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.example.cheqq.ui.viewModel.BlankFragment"
+        android:label="BlankFragment" />
 </navigation>

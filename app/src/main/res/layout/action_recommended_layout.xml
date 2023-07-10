@@ -7,16 +7,13 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/action_recommended_outer_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#30D2A2"
-        >
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/action_recommended_inner_layout"
@@ -68,12 +65,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:src="@drawable/action_recommended_icon"/>
 
-                <androidx.appcompat.widget.AppCompatButton
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:background= "@drawable/black_rounded_corner"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginBottom="17dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +85,5 @@
 
             </androidx.cardview.widget.CardView>
     </com.google.android.material.card.MaterialCardView>
-    </androidx.core.widget.NestedScrollView>
-
 
 </layout>
