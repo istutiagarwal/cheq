@@ -1,14 +1,14 @@
 package com.example.cheqq.ui
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.core.os.postDelayed
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -32,31 +32,44 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        setViewVisibility()
         observeTotalDueLiveData()
         return binding.root
+    }
+
+    private fun setViewVisibility(){
+        binding.totalDueLayout.textTotalDue.visibility = View.INVISIBLE
+        binding.totalDueLayout.payNowCardLayout.visibility = View.GONE
+        binding.totalDueLayout.totalDueAmount.visibility = View.INVISIBLE
+        binding.imageView.visibility = View.INVISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Handler().postDelayed({
+            startAnimation()
+        }, 600)
+    }
+
+    private fun startAnimation(){
+        binding.imageView.visibility = View.VISIBLE
+        val blink = AnimationUtils.loadAnimation(requireActivity(),R.anim.blink_anim)
+        binding.imageView.startAnimation(blink)
+        binding.totalDueLayout.payNowCardLayout.visibility = View.VISIBLE
+        val alpha = AnimationUtils.loadAnimation(requireActivity(),R.anim.alpha)
+        binding.totalDueLayout.payNowCardLayout.startAnimation(alpha)
+        binding.totalDueLayout.textTotalDue.visibility = View.VISIBLE
+        binding.totalDueLayout.totalDueAmount.visibility = View.VISIBLE
     }
 
     private fun observeTotalDueLiveData() {
         homeFragmentViewModel.totalDueCardData.observe(viewLifecycleOwner) { data ->
             if (data != null) {
-                val slider = AnimationUtils.loadAnimation(requireActivity(),R.anim.anim_drop_down)
-                binding.totalDueLayout.totalDueRv.startAnimation(slider)
-
-
-                val blink = AnimationUtils.loadAnimation(requireActivity(),R.anim.blink_anim)
-                binding.totalDueConsLayout.startAnimation(blink)
-               // binding.totalDueConsLayout.background = isAmountOverDue(data)
                 initRecyclerView(data)
             } else {
                 Log.d("Cheq", "data is null")
             }
         }
-    }
-
-    private fun isAmountOverDue(data : ArrayList<BankData>): Drawable? {
-        data.forEach{
-            if(it.isOverDue) return ContextCompat.getDrawable(requireContext(), R.drawable.green_radient_background!!)}
-        return null
     }
 
     private fun initRecyclerView(data: ArrayList<BankData>) {
@@ -69,15 +82,19 @@ class HomeFragment : Fragment() {
     }
 
     private val bindingInterface = object : GenericSimpleRecyclerBindingInterface<BankData> {
-        override fun bindData(item: BankData, view: View) {
-            val bankName: TextView = view.findViewById(R.id.bank_name)
-            val bankCardType: TextView = view.findViewById(R.id.bank_card_type)
-            val bankAmountPayable: TextView = view.findViewById(R.id.bank_amount_payable)
-            val bankDueDays: TextView = view.findViewById(R.id.bank_due_days)
-            bankName.text = item.bankName
-            bankCardType.text = item.bankCardType
-            bankAmountPayable.text = item.bankAmountPayable
-            bankDueDays.text = item.bankDueDays
+        override fun bindData(item: BankData, view: View, adapterPosition: Int) {
+            setBankDueData(item, view)
         }
+    }
+
+    fun setBankDueData(item: BankData, view: View) {
+        val bankName: TextView = view.findViewById(R.id.bank_name)
+        val bankCardType: TextView = view.findViewById(R.id.bank_card_type)
+        val bankAmountPayable: TextView = view.findViewById(R.id.bank_amount_payable)
+        val bankDueDays: TextView = view.findViewById(R.id.bank_due_days)
+        bankName.text = item.bankName
+        bankCardType.text = item.bankCardType
+        bankAmountPayable.text = item.bankAmountPayable
+        bankDueDays.text = item.bankDueDays
     }
 }

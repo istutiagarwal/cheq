@@ -8,6 +8,6 @@ class BaseViewHolder(private val itemView : View) : RecyclerView.ViewHolder(item
     fun <T : Any> bind(
         item: T,
         bindingInterface: GenericSimpleRecyclerBindingInterface<T>
-    ) = bindingInterface.bindData(item,itemView)
+    ) = bindingInterface.bindData(item,itemView,adapterPosition)
 
 }

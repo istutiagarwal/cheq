@@ -1,12 +1,15 @@
 package com.example.cheqq.ui
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -62,7 +65,7 @@ class RewardFragment : Fragment() {
     private val exploreVouchersBindingInterface =
         object : GenericSimpleRecyclerBindingInterface<ExploreVouchersData> {
 
-            override fun bindData(data: ExploreVouchersData, itemView: View) {
+            override fun bindData(data: ExploreVouchersData, itemView: View, adapterPosition: Int) {
                 val exploreVouchersIcon: ImageView =
                     itemView.findViewById(R.id.explore_vouchers_icon)
                 val exploreVouchersTitle: TextView =
@@ -142,7 +145,11 @@ class RewardFragment : Fragment() {
     private val parentBindingInterface =
         object : GenericSimpleRecyclerBindingInterface<FeaturedDetailsData> {
 
-            override fun bindData(parentData: FeaturedDetailsData, itemView: View) {
+            override fun bindData(
+                parentData: FeaturedDetailsData,
+                itemView: View,
+                adapterPosition: Int
+            ) {
                 Log.d("cheq", "$parentData")
                 val featuredDealsType: TextView = itemView.findViewById(R.id.featured_details_title)
                 val recyclerView: RecyclerView = itemView.findViewById(R.id.featured_details_rv_box)
@@ -162,7 +169,11 @@ class RewardFragment : Fragment() {
             val bindingInterface =
                 object : GenericSimpleRecyclerBindingInterface<FeaturedDetailsItem> {
 
-                    override fun bindData(item: FeaturedDetailsItem, view: View) {
+                    override fun bindData(
+                        item: FeaturedDetailsItem,
+                        view: View,
+                        adapterPosition: Int
+                    ) {
                         val detailsAmount: TextView = view.findViewById(R.id.featured_details_price)
                         val detailsCompanyLogo: ImageView = view.findViewById(R.id.swiggy_image)
                         val detailsLogo: ImageView = view.findViewById(R.id.food_image)
@@ -177,9 +188,25 @@ class RewardFragment : Fragment() {
                 }
         }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun onClickGetCashInstantly() {
-       binding.getCashInstantly.getCashInstantlyCard.setOnClickListener {
-          startActivity(Intent(requireActivity() , ErrorActivity::class.java))
-       }
+        val anim1 = AnimationUtils.loadAnimation(requireActivity(),R.anim.scale_up)
+        val anim2 = AnimationUtils.loadAnimation(requireActivity(),R.anim.scale_down)
+        binding.getCashInstantly.getCashInstantlyCard.setOnTouchListener{ v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    v.startAnimation(anim2)
+                    v.performClick()
+                    binding.getCashInstantly.getCashInstantlyCard.setOnClickListener {
+                        startActivity(Intent(requireActivity() , ErrorActivity::class.java))
+                    }
+                }
+                MotionEvent.ACTION_DOWN -> {
+                    v.startAnimation(anim1)
+                }
+            }
+            true
+        }
+
     }
 }

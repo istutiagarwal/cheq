@@ -31,5 +31,5 @@ class BaseAdapter<T : Any>(
 
 
 interface GenericSimpleRecyclerBindingInterface<T> {
-    fun bindData(item: T,view:View)
+    fun bindData(item: T, view: View, adapterPosition: Int)
 }

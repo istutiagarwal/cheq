@@ -19,4 +19,6 @@
     <string name="link_now">Link Now</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="your_credit_score">Your Credit Score</string>
+    <string name="action_recommended">Action Recommended</string>
 </resources>
