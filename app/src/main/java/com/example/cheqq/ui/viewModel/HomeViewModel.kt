@@ -1,15 +1,10 @@
 package com.example.cheqq.ui.viewModel
 
-import android.os.Handler
-import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cheqq.R
 import com.example.cheqq.data.BankData
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {

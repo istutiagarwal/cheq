@@ -1,6 +1,5 @@
 package com.example.cheqq.ui
 
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -27,7 +26,6 @@ import com.example.cheqq.databinding.FragmentRewardBinding
 import com.example.cheqq.ui.adapter.BaseAdapter
 import com.example.cheqq.ui.adapter.GenericSimpleRecyclerBindingInterface
 import com.example.cheqq.ui.viewModel.RewardViewModel
-
 
 class RewardFragment : Fragment() {
 
@@ -146,20 +144,19 @@ class RewardFragment : Fragment() {
         object : GenericSimpleRecyclerBindingInterface<FeaturedDetailsData> {
 
             override fun bindData(
-                parentData: FeaturedDetailsData,
-                itemView: View,
+                item: FeaturedDetailsData,
+                view: View,
                 adapterPosition: Int
             ) {
-                Log.d("cheq", "$parentData")
-                val featuredDealsType: TextView = itemView.findViewById(R.id.featured_details_title)
-                val recyclerView: RecyclerView = itemView.findViewById(R.id.featured_details_rv_box)
+                val featuredDealsType: TextView = view.findViewById(R.id.featured_details_title)
+                val recyclerView: RecyclerView = view.findViewById(R.id.featured_details_rv_box)
                 val layout =
-                    itemView.findViewById<CardView>(R.id.featured_details_price_per_coin_include)
-                layout.visibility = if (parentData.isChipPriceVisible) View.VISIBLE else View.GONE
-                itemView.background = (parentData.backgroundImage)
-                featuredDealsType.text = parentData.featuredDetailsTitle
+                    view.findViewById<CardView>(R.id.featured_details_price_per_coin_include)
+                layout.visibility = if (item.isChipPriceVisible) View.VISIBLE else View.GONE
+                view.background = (item.backgroundImage)
+                featuredDealsType.text = item.featuredDetailsTitle
                 val childAdapter = BaseAdapter<FeaturedDetailsItem>(
-                    parentData.innerRecyclerView,
+                    item.innerRecyclerView,
                     R.layout.featured_details_item,
                     bindingInterface
                 )
@@ -174,39 +171,46 @@ class RewardFragment : Fragment() {
                         view: View,
                         adapterPosition: Int
                     ) {
-                        val detailsAmount: TextView = view.findViewById(R.id.featured_details_price)
-                        val detailsCompanyLogo: ImageView = view.findViewById(R.id.swiggy_image)
-                        val detailsLogo: ImageView = view.findViewById(R.id.food_image)
-                        val chipsPrice: TextView = view.findViewById(R.id.chip_price)
-
-                        detailsAmount.text = item.detailsAmount
-                        detailsCompanyLogo.setImageResource(item.detailsCompanyLogo)
-                        detailsLogo.setImageResource(item.detailsLogo)
-                        chipsPrice.text = item.chipsPrice
+                        setVoucherData(item, view)
                     }
 
                 }
         }
 
+    private fun setVoucherData(
+        item: FeaturedDetailsItem,
+        view: View
+    ) {
+        val detailsAmount: TextView = view.findViewById(R.id.featured_details_price)
+        val detailsCompanyLogo: ImageView = view.findViewById(R.id.swiggy_image)
+        val detailsLogo: ImageView = view.findViewById(R.id.food_image)
+        val chipsPrice: TextView = view.findViewById(R.id.chip_price)
+
+        detailsAmount.text = item.detailsAmount
+        detailsCompanyLogo.setImageResource(item.detailsCompanyLogo)
+        detailsLogo.setImageResource(item.detailsLogo)
+        chipsPrice.text = item.chipsPrice
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun onClickGetCashInstantly() {
-        val anim1 = AnimationUtils.loadAnimation(requireActivity(),R.anim.scale_up)
-        val anim2 = AnimationUtils.loadAnimation(requireActivity(),R.anim.scale_down)
-        binding.getCashInstantly.getCashInstantlyCard.setOnTouchListener{ v, event ->
+        val anim1 = AnimationUtils.loadAnimation(requireActivity(), R.anim.scale_up)
+        val anim2 = AnimationUtils.loadAnimation(requireActivity(), R.anim.scale_down)
+        binding.getCashInstantly.getCashInstantlyCard.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_UP -> {
                     v.startAnimation(anim2)
                     v.performClick()
                     binding.getCashInstantly.getCashInstantlyCard.setOnClickListener {
-                        startActivity(Intent(requireActivity() , ErrorActivity::class.java))
+                        startActivity(Intent(requireActivity(), ErrorActivity::class.java))
                     }
                 }
+
                 MotionEvent.ACTION_DOWN -> {
                     v.startAnimation(anim1)
                 }
             }
             true
         }
-
     }
 }

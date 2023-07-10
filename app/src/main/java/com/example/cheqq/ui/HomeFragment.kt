@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.TextView
-import androidx.core.os.postDelayed
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -31,13 +30,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-            binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         setViewVisibility()
         observeTotalDueLiveData()
         return binding.root
     }
 
-    private fun setViewVisibility(){
+    private fun setViewVisibility() {
         binding.totalDueLayout.textTotalDue.visibility = View.INVISIBLE
         binding.totalDueLayout.payNowCardLayout.visibility = View.GONE
         binding.totalDueLayout.totalDueAmount.visibility = View.INVISIBLE
@@ -51,12 +50,12 @@ class HomeFragment : Fragment() {
         }, 600)
     }
 
-    private fun startAnimation(){
+    private fun startAnimation() {
         binding.imageView.visibility = View.VISIBLE
-        val blink = AnimationUtils.loadAnimation(requireActivity(),R.anim.blink_anim)
+        val blink = AnimationUtils.loadAnimation(requireActivity(), R.anim.blink_anim)
         binding.imageView.startAnimation(blink)
         binding.totalDueLayout.payNowCardLayout.visibility = View.VISIBLE
-        val alpha = AnimationUtils.loadAnimation(requireActivity(),R.anim.alpha)
+        val alpha = AnimationUtils.loadAnimation(requireActivity(), R.anim.alpha)
         binding.totalDueLayout.payNowCardLayout.startAnimation(alpha)
         binding.totalDueLayout.textTotalDue.visibility = View.VISIBLE
         binding.totalDueLayout.totalDueAmount.visibility = View.VISIBLE

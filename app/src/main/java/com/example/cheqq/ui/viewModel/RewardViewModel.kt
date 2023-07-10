@@ -10,18 +10,20 @@ import kotlinx.coroutines.launch
 
 class RewardViewModel : ViewModel() {
 
-    private val _exploreVoucherCardData : MutableLiveData<ArrayList<ExploreVouchersData>> = MutableLiveData(null)
-    var exploreVoucherCardData : LiveData<ArrayList<ExploreVouchersData>> = _exploreVoucherCardData
+    private val _exploreVoucherCardData: MutableLiveData<ArrayList<ExploreVouchersData>> =
+        MutableLiveData(null)
+    var exploreVoucherCardData: LiveData<ArrayList<ExploreVouchersData>> = _exploreVoucherCardData
 
-    init{
+    init {
         getExploreVouchersCardData()
     }
 
-    private fun getExploreVouchersCardData(){
+    private fun getExploreVouchersCardData() {
         viewModelScope.launch {
             _exploreVoucherCardData.value = getListOfExploreVouchers()
         }
     }
+
     private fun getListOfExploreVouchers() = arrayListOf<ExploreVouchersData>(
         ExploreVouchersData(
             exploreVouchersTitle = "Food",
